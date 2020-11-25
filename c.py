@@ -81,7 +81,7 @@ with open('Yangon_HO.csv') as csv_file:
 
     with open('Yangon_HO_AQI.csv', mode='w') as SCA_file:
         SCA_writer = csv.writer(SCA_file, delimiter=',', quotechar='"', quoting =csv.QUOTE_MINIMAL)
-        SCA_writer.writerow(['Created At','PM2.5 AQI','AQImessage','Risk Factor'])
+        SCA_writer.writerow(['Created At','PM1.0_CF1_ug/m3','PM2.5_CF1_ug/m3','PM10.0_CF1_ug/m3','UptimeMinutes','RSSI_dbm','Temperature_F','Humidity_%','PM2.5_ATM_ug/m3','PM2.5 AQI','AQImessage','Risk Factor'])
 
         for row in csv_reader:
             if line_count == 0:
@@ -95,7 +95,7 @@ with open('Yangon_HO.csv') as csv_file:
                     AQI = "-"
                 AQImessage = getAQImessage(AQI)
                 RiskFactor = getRiskFactor(AQI)
-                SCA_writer.writerow([row[0], AQI, AQImessage, RiskFactor])
+                SCA_writer.writerow([row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8], AQI, AQImessage, RiskFactor])
                 line_count += 1
             print(f'Processed {line_count} lines.')
 
